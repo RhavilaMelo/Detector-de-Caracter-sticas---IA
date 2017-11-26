@@ -66,6 +66,10 @@
             alert(errorString);
         });
     };
+
+    function viewCod() {
+      $('#jsonOutput').show();
+    }
 </script>
 
 
@@ -85,20 +89,22 @@
   <button class="waves-effect waves-light btn" onclick="processImage()">Analizar Rosto</button>
   <br><br>
   <div id="wrapper" style="width:1020px; display:table;">
-      <div id="jsonOutput" style="width:600px; display:table-cell;">
-          <p class="text">Resposta:</p>
-          <br>
-
-          <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
-      </div>
       <div id="imageDiv" style="width:420px; display:table-cell;">
           <p class="text">Imagem:</p>
           <br>
           <img id="sourceImage" width="400" />
+          <br>
+          <p class="text">Atributos:</p>
+          <p class="text">Sexo:</p>
+          <p class="text">Idade:</p>
+          <p class="text">Óculos:</p>
+      </div>
+          <button class="waves-effect waves-light btn" onclick="viewCod()">Mostrar código</button>
+          <div id="jsonOutput" style="width:600px; display:table-cell; display: none;">
+          <br>
+          <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
       </div>
   </div>
 </section>
-
-
 </body>
 </html>
