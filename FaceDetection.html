@@ -56,6 +56,21 @@
         .done(function(data) {
             // Show formatted JSON on webpage.
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
+
+            var htmlText = '';
+
+            for ( var key in data ) {
+                htmlText += '<div class="div-conatiner">';
+                htmlText += '<p> Sexo: ' + data[key].faceAttributes.gender + '</p>';
+                htmlText += '<p> Idade: ' + data[key].faceAttributes.age + '</p>';
+                htmlText += '<p> Oculos: ' + data[key].faceAttributes.glasses + '</p>';
+                htmlText += '<p > Maquiagem(Batom): ' + data[key].faceAttributes.makeup.lipMakeup + '</p>';
+                htmlText += '<p> Maquiagem(Sombra): ' + data[key].faceAttributes.makeup.eyeMakeup + '</p>';
+                htmlText += '</div>';
+            }
+
+$('.att').append(htmlText);
+
         })
 
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -94,10 +109,7 @@
           <br>
           <img id="sourceImage" width="400" />
           <br>
-          <p class="text">Atributos:</p>
-          <p class="text" id="sexo">Sexo:</p>
-          <p class="text" id="idade">Idade:</p>
-          <p class="text" id="oculos">Óculos:</p>
+          <p class="text att">Atributos:</p>
       </div>
           <button class="waves-effect waves-light btn" onclick="viewCod()">Mostrar código</button>
           <div id="jsonOutput" style="width:600px; display:table-cell; display: none;">
