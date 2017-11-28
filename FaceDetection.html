@@ -9,6 +9,8 @@
 
 <script type="text/javascript">
     function processImage() {
+        var $atributos = document.querySelector('.att');
+        $atributos.innerHTML = ' ';
         // **********************************************
         // *** Update or verify the following values. ***
         // **********************************************
@@ -59,17 +61,31 @@
 
             var htmlText = '';
 
+            var genero = data[0].faceAttributes.gender === 'male' ? 'masculino' : 'feminino';
+            var TemOculos = function(){
+                var oculos = data[0].faceAttributes.glasses;
+                if(oculos) {
+                    oculos = oculos === 'ReadingGlasses' ? 'Óculos de leitura' : 'Óculos de sol';
+                } else {
+                    oculos = 'Sem óculos'
+                }
+                return oculos;
+            }
+            var oculos = data[0].faceAttributes.gender === true ? '' : 'sem óculos';
+            var batom = data[0].faceAttributes.makeup.lipMakeup ? 'Está com batom' : 'Não possui batom';
+            var sombra = data[0].faceAttributes.makeup.lipMakeup ? 'Possui sombra nos olhos' : 'Não possui sombra nos olhos';
+
             for ( var key in data ) {
                 htmlText += '<div class="div-conatiner">';
-                htmlText += '<p> Sexo: ' + data[key].faceAttributes.gender + '</p>';
+                htmlText += '<p> Sexo: ' + genero + '</p>';
                 htmlText += '<p> Idade: ' + data[key].faceAttributes.age + '</p>';
-                htmlText += '<p> Oculos: ' + data[key].faceAttributes.glasses + '</p>';
-                htmlText += '<p > Maquiagem(Batom): ' + data[key].faceAttributes.makeup.lipMakeup + '</p>';
-                htmlText += '<p> Maquiagem(Sombra): ' + data[key].faceAttributes.makeup.eyeMakeup + '</p>';
+                htmlText += '<p> Oculos: ' + TemOculos() + '</p>';
+                htmlText += '<p > Maquiagem(Batom): ' + batom + '</p>';
+                htmlText += '<p> Maquiagem(Sombra): ' + sombra + '</p>';
                 htmlText += '</div>';
             }
 
-$('.att').append(htmlText);
+            $('.att').append(htmlText);
 
         })
 
